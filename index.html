@@ -2,46 +2,159 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <title>Frontend Mentor | Four card feature section</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  <title>AI-Powered Neural Intelligence Hub | Future-Tech Interface</title>
 </head>
 <body>
-  <header>
-    <h1 class="display-6" style="font-size: 30px;"> Reliable, efficient delivery</h1>
-    <h2>Powered by Technology</h2>
-    <p>Our Artificial Intelligence powered tools use millions of project data points 
-      to ensure that your project is successful</p>
-  </header>
-  <main>
-    <div class="flash supervisor">
-      <h4>Supervisor</h4>
-      <p>Monitors activity to identify project roadblocks</p>
-    </div>
-    <div class=" column">
-      <div class="flash team-builder">
-        <h4>Team Builder</h4>
-        <p>Scans our talent network to create the optimal team for your project</p>
+  <!-- Particle System Background -->
+  <canvas id="particleCanvas"></canvas>
+  <canvas id="neuralCanvas"></canvas>
+  
+  <!-- Matrix Rain Effect -->
+  <canvas id="matrixCanvas"></canvas>
+  
+  <!-- 3D Scene Container -->
+  <div id="scene-container"></div>
+  
+  <!-- Main Content -->
+  <div class="main-container">
+    <header class="neural-header">
+      <div class="hologram-text">
+        <h1 class="quantum-title">
+          <span class="glitch-text" data-text="NEURAL">NEURAL</span>
+          <span class="ai-highlight">AI</span>
+          <span class="glitch-text" data-text="INTELLIGENCE">INTELLIGENCE</span>
+        </h1>
+        <h2 class="subtitle">Quantum-Powered Cognitive Architecture</h2>
+        <p class="description">
+          Advanced neural networks processing 
+          <span class="data-flow" id="dataCount">47,392,851</span> 
+          data points per nanosecond to optimize reality-bending computational paradigms
+        </p>
       </div>
-      <div class="flash Karma">
-        <h4>Karma</h4>
-        <p>Regularly evaluates our talent to ensure quality</p>
+      
+      <!-- Real-time Metrics Dashboard -->
+      <div class="metrics-bar">
+        <div class="metric">
+          <span class="metric-label">Neural Efficiency</span>
+          <div class="metric-bar">
+            <div class="metric-fill" id="efficiency"></div>
+            <span class="metric-value" id="efficiencyValue">98.7%</span>
+          </div>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Quantum Coherence</span>
+          <div class="metric-bar">
+            <div class="metric-fill quantum" id="coherence"></div>
+            <span class="metric-value" id="coherenceValue">99.2%</span>
+          </div>
+        </div>
+        <div class="metric">
+          <span class="metric-label">AI Processing</span>
+          <div class="metric-bar">
+            <div class="metric-fill ai" id="processing"></div>
+            <span class="metric-value" id="processingValue">156.3 THz</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="neural-grid">
+      <!-- Enhanced Supervisor Card -->
+      <div class="neural-card supervisor-enhanced" data-neural="supervisor">
+        <div class="card-glow"></div>
+        <div class="neural-circuit"></div>
+        <div class="holographic-overlay"></div>
+        <div class="card-content">
+          <h4>Quantum Supervisor</h4>
+          <p>Multi-dimensional consciousness monitoring across infinite parallel processing threads</p>
+          <div class="neural-stats">
+            <canvas class="mini-chart" id="supervisorChart"></canvas>
+          </div>
+          <div class="data-stream">
+            <span class="stream-data" id="supervisorData">Analyzing...</span>
+          </div>
+        </div>
+        <div class="icon-3d supervisor-icon"></div>
+      </div>
+
+      <div class="neural-column">
+        <!-- Enhanced Team Builder Card -->
+        <div class="neural-card team-builder-enhanced" data-neural="team-builder">
+          <div class="card-glow"></div>
+          <div class="neural-circuit"></div>
+          <div class="holographic-overlay"></div>
+          <div class="card-content">
+            <h4>Cognitive Team Architect</h4>
+            <p>AI-driven synaptic network formation for optimal human-machine collaboration matrices</p>
+            <div class="neural-stats">
+              <canvas class="mini-chart" id="teamChart"></canvas>
+            </div>
+            <div class="data-stream">
+              <span class="stream-data" id="teamData">Optimizing...</span>
+            </div>
+          </div>
+          <div class="icon-3d team-icon"></div>
+        </div>
+
+        <!-- Enhanced Karma Card -->
+        <div class="neural-card karma-enhanced" data-neural="karma">
+          <div class="card-glow"></div>
+          <div class="neural-circuit"></div>
+          <div class="holographic-overlay"></div>
+          <div class="card-content">
+            <h4>Quantum Karma Engine</h4>
+            <p>Probability field manipulation ensuring universal balance through algorithmic destiny</p>
+            <div class="neural-stats">
+              <canvas class="mini-chart" id="karmaChart"></canvas>
+            </div>
+            <div class="data-stream">
+              <span class="stream-data" id="karmaData">Harmonizing...</span>
+            </div>
+          </div>
+          <div class="icon-3d karma-icon"></div>
+        </div>
+      </div>
+
+      <!-- Enhanced Calculator Card -->
+      <div class="neural-card calculator-enhanced" data-neural="calculator">
+        <div class="card-glow"></div>
+        <div class="neural-circuit"></div>
+        <div class="holographic-overlay"></div>
+        <div class="card-content">
+          <h4>Temporal Calculator</h4>
+          <p>Quantum computational analysis of space-time continuum for predictive project delivery</p>
+          <div class="neural-stats">
+            <canvas class="mini-chart" id="calculatorChart"></canvas>
+          </div>
+          <div class="data-stream">
+            <span class="stream-data" id="calculatorData">Computing...</span>
+          </div>
+        </div>
+        <div class="icon-3d calculator-icon"></div>
+      </div>
+    </main>
+
+    <!-- AI Assistant Interface -->
+    <div class="ai-assistant">
+      <div class="ai-avatar">
+        <canvas id="aiAvatar"></canvas>
+      </div>
+      <div class="ai-status">
+        <span class="ai-text" id="aiStatus">Neural networks are optimally synchronized</span>
       </div>
     </div>
-    <div class="flash calculator">
-      <h4>Calculator</h4>
-      <p>Uses data from past projects to provide better delivery estimates</p>
-    </div>
-  </main>
+  </div>
+
+  <!-- Advanced JavaScript Engine -->
+  <script src="neural-engine.js"></script>
 </body>
 </html>

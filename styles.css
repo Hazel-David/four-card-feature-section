@@ -1,133 +1,618 @@
-:root{
---Red: hsl(0, 78%, 62%);
---Cyan: hsl(180, 62%, 55%);
---Orange: hsl(34, 97%, 64%);
---Blue: hsl(212, 86%, 64%);
---Very-Dark-Blue: hsl(234, 12%, 34%);
---Grayish-Blue: hsl(229, 6%, 66%);
---Very-Light-Gray: hsl(0, 0%, 98%);
+/* ===== QUANTUM NEURAL INTERFACE STYLES ===== */
+
+:root {
+  /* Quantum Color Palette */
+  --quantum-blue: #00f5ff;
+  --neural-purple: #8a2be2;
+  --ai-cyan: #00ffff;
+  --matrix-green: #00ff41;
+  --hologram-pink: #ff1493;
+  --void-black: #000000;
+  --space-dark: #0a0a0a;
+  --energy-yellow: #ffff00;
+  --plasma-orange: #ff6600;
+  
+  /* Neural Gradients */
+  --neural-gradient: linear-gradient(45deg, var(--quantum-blue), var(--neural-purple), var(--ai-cyan));
+  --hologram-gradient: linear-gradient(135deg, rgba(0, 245, 255, 0.3), rgba(255, 20, 147, 0.3));
+  --matrix-gradient: linear-gradient(180deg, rgba(0, 255, 65, 0.8), rgba(0, 0, 0, 0.9));
 }
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+
+/* ===== GLOBAL QUANTUM FOUNDATION ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body{
-    background-color: white;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+
+body {
+  font-family: 'Rajdhani', 'Orbitron', monospace;
+  background: radial-gradient(ellipse at center, #001122 0%, #000000 100%);
+  color: var(--quantum-blue);
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ===== PARTICLE SYSTEM CANVAS ===== */
+#particleCanvas, #neuralCanvas, #matrixCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+#neuralCanvas {
+  z-index: 2;
+}
+
+#matrixCanvas {
+  z-index: 0;
+  opacity: 0.3;
+}
+
+/* ===== 3D SCENE CONTAINER ===== */
+#scene-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.main-container {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+/* ===== NEURAL HEADER ===== */
+.neural-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.hologram-text {
+  position: relative;
+  padding: 2rem;
+  border: 2px solid var(--quantum-blue);
+  border-radius: 20px;
+  background: rgba(0, 245, 255, 0.05);
+  box-shadow: 
+    0 0 30px rgba(0, 245, 255, 0.3),
+    inset 0 0 30px rgba(0, 245, 255, 0.1);
+  backdrop-filter: blur(15px);
+}
+
+.quantum-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
+}
+
+.glitch-text {
+  position: relative;
+  display: inline-block;
+  animation: glitch 2s infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  animation: glitch-1 0.5s infinite;
+  color: var(--hologram-pink);
+  z-index: -1;
+}
+
+.glitch-text::after {
+  animation: glitch-2 0.5s infinite;
+  color: var(--matrix-green);
+  z-index: -2;
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  10% { transform: translate(-2px, 2px); }
+  20% { transform: translate(2px, -2px); }
+  30% { transform: translate(-2px, -2px); }
+  40% { transform: translate(2px, 2px); }
+  50% { transform: translate(0); }
+}
+
+@keyframes glitch-1 {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(-1px, 1px); }
+  50% { transform: translate(1px, -1px); }
+  75% { transform: translate(-1px, -1px); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(1px, -1px); }
+  50% { transform: translate(-1px, 1px); }
+  75% { transform: translate(1px, 1px); }
+}
+
+.ai-highlight {
+  color: var(--hologram-pink);
+  text-shadow: 
+    0 0 10px var(--hologram-pink),
+    0 0 20px var(--hologram-pink),
+    0 0 30px var(--hologram-pink);
+  animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+  from { opacity: 0.8; }
+  to { opacity: 1; }
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: var(--ai-cyan);
+  margin-bottom: 1rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: rgba(0, 245, 255, 0.8);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.data-flow {
+  color: var(--matrix-green);
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  animation: data-stream 1s ease-in-out infinite;
+}
+
+@keyframes data-stream {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* ===== METRICS BAR ===== */
+.metrics-bar {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.metric {
+  min-width: 200px;
+  text-align: center;
+}
+
+.metric-label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--ai-cyan);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.metric-bar {
+  height: 8px;
+  background: rgba(0, 245, 255, 0.2);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.metric-fill {
+  height: 100%;
+  background: var(--neural-gradient);
+  border-radius: 4px;
+  animation: metric-flow 2s ease-in-out infinite;
+  position: relative;
+}
+
+.metric-fill.quantum {
+  background: linear-gradient(90deg, var(--neural-purple), var(--hologram-pink));
+}
+
+.metric-fill.ai {
+  background: linear-gradient(90deg, var(--matrix-green), var(--energy-yellow));
+}
+
+@keyframes metric-flow {
+  0%, 100% { width: 85%; }
+  50% { width: 98%; }
+}
+
+.metric-value {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.8rem;
+  color: var(--quantum-blue);
+  font-weight: 600;
+}
+
+/* ===== NEURAL GRID ===== */
+.neural-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3rem;
+  max-width: 1200px;
+  position: relative;
+}
+
+.neural-column {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* ===== NEURAL CARDS ===== */
+.neural-card {
+  width: 350px;
+  height: 280px;
+  position: relative;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--quantum-blue);
+  padding: 2rem;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.neural-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--neural-gradient);
+  opacity: 0.1;
+  border-radius: 18px;
+  transition: opacity 0.5s ease;
+}
+
+.neural-card:hover {
+  transform: rotateY(15deg) rotateX(5deg) scale(1.05);
+  box-shadow: 
+    0 20px 40px rgba(0, 245, 255, 0.3),
+    0 0 60px rgba(0, 245, 255, 0.2);
+}
+
+.neural-card:hover::before {
+  opacity: 0.2;
+}
+
+/* ===== CARD EFFECTS ===== */
+.card-glow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--neural-gradient);
+  border-radius: 22px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.neural-card:hover .card-glow {
+  opacity: 0.5;
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+.neural-circuit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(90deg, transparent 98%, var(--quantum-blue) 100%),
+    linear-gradient(180deg, transparent 98%, var(--quantum-blue) 100%);
+  background-size: 20px 20px;
+  opacity: 0.3;
+  animation: circuit-flow 3s linear infinite;
+}
+
+@keyframes circuit-flow {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(20px, 20px); }
+}
+
+.holographic-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--hologram-gradient);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.neural-card:hover .holographic-overlay {
+  opacity: 1;
+  animation: hologram-scan 2s ease-in-out infinite;
+}
+
+@keyframes hologram-scan {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+/* ===== CARD CONTENT ===== */
+.card-content {
+  position: relative;
+  z-index: 5;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content h4 {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.4rem;
+  color: var(--quantum-blue);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+}
+
+.card-content p {
+  color: rgba(0, 245, 255, 0.8);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+/* ===== NEURAL STATS ===== */
+.neural-stats {
+  height: 60px;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.mini-chart {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 245, 255, 0.1);
+  border-radius: 5px;
+}
+
+.data-stream {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.8rem;
+  color: var(--matrix-green);
+  text-align: center;
+  animation: stream-blink 1.5s ease-in-out infinite;
+}
+
+@keyframes stream-blink {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ===== 3D ICONS ===== */
+.icon-3d {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  width: 60px;
+  height: 60px;
+  background: var(--neural-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: icon-rotate 4s linear infinite;
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+}
+
+@keyframes icon-rotate {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+/* ===== CARD SPECIFIC STYLES ===== */
+.supervisor-enhanced {
+  border-color: var(--ai-cyan);
+}
+
+.supervisor-enhanced:hover {
+  border-color: var(--ai-cyan);
+  box-shadow: 0 20px 40px rgba(0, 255, 255, 0.3);
+}
+
+.team-builder-enhanced {
+  border-color: var(--hologram-pink);
+}
+
+.team-builder-enhanced:hover {
+  border-color: var(--hologram-pink);
+  box-shadow: 0 20px 40px rgba(255, 20, 147, 0.3);
+}
+
+.karma-enhanced {
+  border-color: var(--plasma-orange);
+}
+
+.karma-enhanced:hover {
+  border-color: var(--plasma-orange);
+  box-shadow: 0 20px 40px rgba(255, 102, 0, 0.3);
+}
+
+.calculator-enhanced {
+  border-color: var(--neural-purple);
+}
+
+.calculator-enhanced:hover {
+  border-color: var(--neural-purple);
+  box-shadow: 0 20px 40px rgba(138, 43, 226, 0.3);
+}
+
+/* ===== AI ASSISTANT ===== */
+.ai-assistant {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 1rem;
+  border-radius: 50px;
+  border: 2px solid var(--quantum-blue);
+  backdrop-filter: blur(10px);
+  z-index: 20;
+}
+
+.ai-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--neural-gradient);
+  animation: avatar-pulse 2s ease-in-out infinite;
+}
+
+@keyframes avatar-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+#aiAvatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.ai-status {
+  color: var(--quantum-blue);
+  font-family: 'Orbitron', monospace;
+  font-size: 0.9rem;
+  max-width: 200px;
+}
+
+.ai-text {
+  animation: text-glow 3s ease-in-out infinite;
+}
+
+@keyframes text-glow {
+  0%, 100% { text-shadow: 0 0 5px rgba(0, 245, 255, 0.5); }
+  50% { text-shadow: 0 0 15px rgba(0, 245, 255, 0.8); }
+}
+
+/* ===== RESPONSIVE QUANTUM DESIGN ===== */
+@media screen and (max-width: 1200px) {
+  .neural-grid {
+    grid-template-columns: 1fr;
     gap: 2rem;
-    justify-content: center;
-    align-items: center;
-}
-header{
-    text-align: center;
-}
-header>p{
-    width: 30rem;
-    text-align: center;
-    margin: 0 auto;
-    color: var(--Grayish-Blue);
-}
-p{
-    color: var(--Grayish-Blue);
-}
-main{
-    display: flex;
+  }
+  
+  .neural-column {
     flex-direction: row;
     gap: 2rem;
+  }
+  
+  .neural-card {
+    width: 300px;
+    height: 250px;
+  }
 }
-.flash{
-    height:12rem;
-    width: 20rem;
-    padding: 1rem;
-    border-radius: .5rem;
-    box-shadow: 5px 5px 15px 5px var(--Grayish-Blue);
-    cursor: pointer;
-    transition: transform .7s ease-in-out;
-    &:hover{
-        transform: scale(1.05);
-    }
-}
-.column{
-    display: flex;
+
+@media screen and (max-width: 768px) {
+  .quantum-title {
+    font-size: 2.5rem;
+  }
+  
+  .metrics-bar {
     flex-direction: column;
-    gap: 3rem;
+    gap: 1rem;
+  }
+  
+  .neural-column {
+    flex-direction: column;
+  }
+  
+  .neural-card {
+    width: 280px;
+    height: 220px;
+  }
+  
+  .ai-assistant {
+    position: relative;
+    margin-top: 2rem;
+    align-self: center;
+  }
 }
-.supervisor,.calculator{
-    margin: auto 0;
+
+@media screen and (max-width: 480px) {
+  .main-container {
+    padding: 1rem;
+  }
+  
+  .quantum-title {
+    font-size: 2rem;
+  }
+  
+  .neural-card {
+    width: 260px;
+    height: 200px;
+    padding: 1.5rem;
+  }
 }
-.supervisor{
-    background: url(images/icon-supervisor.svg);
-    background-repeat: no-repeat;
-    background-position: bottom 1rem right 1rem;
-    border-top: 5px solid var(--Cyan);
-    transition: border .5s ease-in-out;
-    &:hover{
-        border: 5px solid var(--Cyan);
-    }
+
+/* ===== LOADING ANIMATIONS ===== */
+@keyframes neural-load {
+  0% { opacity: 0; transform: translateY(50px) rotateX(90deg); }
+  100% { opacity: 1; transform: translateY(0) rotateX(0deg); }
 }
-.team-builder{
-    background: url(images/icon-team-builder.svg);
-    background-repeat: no-repeat;
-    background-position: bottom 1rem right 1rem;
-    border-top: 5px solid var(--Red);
-    transition: border .5s ease-in-out;
-    &:hover{
-        border: 5px solid var(--Red);
-    }
+
+.neural-card {
+  animation: neural-load 1s ease-out forwards;
 }
-.Karma{
-    background: url(images/icon-karma.svg);
-    background-repeat: no-repeat;
-    background-position: bottom 1rem right 1rem;
-    border-top: 5px solid var(--Orange);
-    transition: border .5s ease-in-out;
-    &:hover{
-        border: 5px solid var(--Orange);
-    }
-}
-.calculator{
-    background: url(images/icon-calculator.svg);
-    background-repeat: no-repeat;
-    background-position: bottom 1rem right 1rem;
-    border-top: 5px solid var(--Blue);
-    transition: border .5s ease-in-out;
-    &:hover{
-        border:5px solid var(--Blue) ;
-    }
-}
-@media screen and (max-width: 850px){
-    .flash{
-        width: 18rem;
-    }
-    main{
-        gap: 1rem;
-    }
-}
-@media screen and (max-width: 800px){
-    body{
-        height: 1200px;
-    }
-    main{
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-    }
-    header>p{
-        width: 20rem;
-    }
-    footer{
-        width: 20rem;
-    }
-}
-@media screen and (max-width: 400px){
-    .flash{
-        width: 17rem;
-    }
-    header>p{
-        width: 17rem;
-    }
-}
+
+.neural-card:nth-child(1) { animation-delay: 0.1s; }
+.neural-card:nth-child(2) { animation-delay: 0.2s; }
+.neural-card:nth-child(3) { animation-delay: 0.3s; }
+.neural-card:nth-child(4) { animation-delay: 0.4s; }
